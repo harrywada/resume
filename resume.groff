@@ -1,0 +1,94 @@
+.so macros.groff
+.\" ===
+.\" Information
+.\" ===
+.info "Address"
+750 Synergy Park Blvd
+.br
+#12-238
+.br
+Richardson TX, 75080
+.info "Phone"
+(512) 703-7483
+.info "Email"
+.email spam@harrywada.com
+.info "Place of birth"
+Carrollton, TX
+.info "Drivers license"
+None
+.info "Nationality"
+American
+.\" ===
+.\" Links
+.\" ===
+.link "Github" "https://github.com/harrywada"
+.link "LinkedIn" "https://linkedin.com/in/harrywada"
+.link "Website" "https://www.harrywada.com"
+.\" ===
+.\" Skills
+.\" ===
+.skill "Go"
+.skill "C"
+.skill "React"
+.skill "Javascript"
+.skill "Linux"
+.skill "Docker"
+.skill "Git"
+.skill "Jira"
+.\" ===
+.\" Profile
+.\" ===
+.profile
+Emerging from the Austin Coding Academy as a front-end developer,
+my experience has since broadened to more general software as well.
+More than anything,
+I am an avid minimalist
+who believes in the prioritization of maintainability and documentability.
+.\" ===
+.\" Experience
+.\" ===
+.exp "Software Engineer Intern, Bazaarvoice" "Remote" \
+     "May 2021" "August 2021"
+Was responsible for improving the Curalate service\
+\[em]a broad platform enabling brands to connect with shoppers
+and provide a more authentic shopping experience
+by relying on user-contributed media from social networking sites,
+among other features.
+.list
+Extended, improved, and bug-fixed various API services,
+and in doing so gained a comprehensive understanding of the microservice architecture
+.list
+Made significant contributions to the open-source project twitter4s
+.list
+Engaged in daily standup meetings
+and worked closely with other engineers
+.exp "Software Engineer Intern, Bazaarvoice" "Remote" \
+     "May 2020" "August 2020"
+Engineered a solution to migrate data
+from production DynamoDB tables
+to newly managed PostgreSQL instances.
+.list
+Migrated existing NoSQL data into a relational format
+using a custom Python script
+.list
+Developed and deployed infrastructure using Cloudformation templates
+.exp "Software Engineer Intern, Bazaarvoice" "Austin, TX" \
+     "May 2019" "November 2019"
+Developed a full-featured internal tool using React and Redux,
+easing the amount of effort required to accomplish the everyday processes of many teams.
+.list
+Worked with authenticated APIs
+to retrieve, create, and update data.
+.list
+Adopted an agile workflow
+in which constraints and requirements could change often
+and needed to be responded to in a timely manner
+.exp "Software Developer Intern, Hunt Gather" "Austin, TX" \
+     "June 2017" "August 2017"
+Spent a summer working intimately with a small team of designers
+to prototype and develop a range of web apps and static websites.
+.\" ===
+.\" Education
+.\" ===
+.edu "University of Texas at Dallas, B.S. in Computer Science" "May 2023"
+.edu "Austin Coding Academy, Graduation from Advanced Class" "September 2016"

@@ -1,0 +1,161 @@
+.\" Store the current state to ensure correct ordering.
+.ds _state INIT
+.\" Capitalization transformations.
+.ds _caps aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
+.ds _ncaps aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
+.\" Setting spacing values.
+.ad l
+.if !n .po 0.5i
+.\" Macros.
+.de url
+.   ie n .nop \\$2
+.   el .pdfhref W -D \\$2 -- \\$1
+..
+.de email
+.   ie n .nop \\$1
+.   el .pdfhref W -D mailto:\\$1 \\$1
+..
+.de list
+.   ie r _list .br
+.   el \{\
+.      ie n \{\
+.         br
+.         in +3h
+.      \}
+.      el \{\
+.         sp 0.05i
+.         in +0.35i
+.      \}
+.      nr _list 1
+.   \}
+.   ie n .nop \h'-\w'\[bu] 'u'\[bu]
+.   \" The trailing \h is to account for the space that will be added.
+.   el   .nop \Z'\h'-0.15i'\fB\[bu]\f[]'\h'-\w' 'u'
+..
+.de section
+.   tr \*[_caps]
+.   \" Don't care about conditional kerning; 999 should never trigger.
+.   tkf R 10 0.1666m 999 0
+.   nop \Z'\v' 0.1i'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
+.   tkf R 10 0 999 0
+.   tr \*[_ncaps]
+.   ie n .sp
+.   el   .sp 0.2i
+..
+.de info
+.   if r _list \{\
+.      in -0.35i
+.      rr _list
+.   \}
+.   ie "\\*[_state]"INFO" \{\
+.      ie n .sp
+.      el   .sp 0.1i
+.   \}
+.   el \{\
+.      if !"\\*[_state]"INIT" \{\
+.         ie n .sp
+.         el   .sp 0.2i
+.      \}
+.      section info
+.      ds _state INFO
+.   \}
+.   tr \*[_caps]
+.   nop \fB\\$1\f[]
+.   tr \*[_ncaps]
+.   br
+..
+.de link
+.   ie "\\*[_state]"LINKS" \{\
+.      ie n .br
+.      el   .sp 0.1i
+.   \}
+.   el \{\
+.      if !"\\*[_state]"INIT" \{\
+.         ie n .sp
+.         el   .sp 0.2i
+.      \}
+.      section links
+.      ds _state LINKS
+.   \}
+.   url "\\$1" "\\$2"
+..
+.de skill
+.   ie "\\*[_state]"SKILLS" \{\
+.      ie n .br
+.      el   .sp 0.1i
+.   \}
+.   el \{\
+.      if !"\\*[_state]"INIT" \{\
+.         ie n .sp
+.         el   .sp 0.2i
+.      \}
+.      section skills
+.      ds _state SKILLS
+.   \}
+.   nop \\$1
+..
+.de profile
+.   ie "\\*[_state]"PROFILE" \{\
+.      ie n .sp
+.      el   .sp 0.1i
+.   \}
+.   el \{\
+.      if !"\\*[_state]"INIT" \{\
+.         ie n .sp
+.         el   .sp 0.2i
+.      \}
+.      section profile
+.      ds _state PROFILE
+.   \}
+..
+.de exp
+.   ie "\\*[_state]"EXPERIENCE" \{\
+.      if r _list \{\
+.          ie n .in -3h
+.          el   .in -0.35i
+.          rr _list
+.      \}
+.      ie n .sp
+.      el   .sp 0.1i
+.   \}
+.   el \{\
+.      if !"\\*[_state]"INIT" \{\
+.         ie n .sp
+.         el   .sp 0.2i
+.      \}
+.      section employment\ history
+.      ds _state EXPERIENCE
+.   \}
+.   nop \s(10\fB\\$1\f[]\s0
+.   brp
+.   ad r
+.   sp -1
+.   nop \\$2
+.   brp
+.   ad l
+.   nop \\$3
+.   if !"\\$4"" .nop \[en] \\$4
+.   ie n .br
+.   el   .sp 0.05i
+..
+.de edu
+.   ie "\\*[_state]"EDUCATION" \{\
+.      ie n .sp
+.      el   .sp 0.1i
+.      if r _list \{\
+.          in -0.35i
+.          rr _list
+.      \}
+.   \}
+.   el \{\
+.      if !"\\*[_state]"INIT" \{\
+.         ie n .sp
+.         el   .sp 0.2i
+.      \}
+.      section education
+.      ds _state EDUCATION
+.   \}
+.   nop \s(10\fB\\$1\f[]\s0
+.   br
+.   nop \\$2
+..
