@@ -34,13 +34,14 @@
 .   ie r _list .br
 .   el \{\
 .      ie n .br
-.      el   .sp +0.05i
+.      el   .sp +0.127c
 .      in +\n[_list_indent]u
 .      nr _list 1
 .   \}
 .   ie n .nop \h'-\w'\[bu] 'u'\[bu]
 .   \" The trailing \h is to account for the space that will be added.
-.   el   .nop \Z'\h'-0.15i'\fB\[bu]\f[]'\h'-\w' 'u'
+.   el   .nop \Z'\h'-0.381c'\fB\[bu]\f[]'\h'-\w' 'u'
+..
 .de 2c
 .   nop \p
 .   ds _state INIT
@@ -52,11 +53,11 @@
 .   tr \*[_caps]
 .   \" Don't care about conditional kerning; 999 should never trigger.
 .   tkf R 10 0.1666m 999 0
-.   nop \Z'\v' 0.1i'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
+.   nop \Z'\v' 0.254c'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
 .   tkf R 10 0 999 0
 .   tr \*[_ncaps]
 .   ie n .sp
-.   el   .sp 0.2i
+.   el   .sp 0.5c
 ..
 .de section
 .   if r _list \{\
@@ -68,12 +69,12 @@
 .         ie "\\$2"br" .br
 .         el           .sp
 .      \}
-.      el   .sp 0.1i
+.      el   .sp 0.254c
 .   \}
 .   el \{\
 .      if !"\\*[_state]"INIT" \{\
 .         ie n .sp
-.         el   .sp 0.2i
+.         el   .sp 0.5c
 .      \}
 .      header "\\$1"
 .      ds _state \\$1
@@ -109,7 +110,7 @@
 .   nop \\$3
 .   if !"\\$4"" .nop \[en] \\$4
 .   ie n .br
-.   el   .sp 0.05i
+.   el   .sp 0.127c
 ..
 .de edu
 .   section "education"
