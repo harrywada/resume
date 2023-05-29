@@ -1,5 +1,8 @@
-resume.pdf: resume.groff macros.groff
-	pdfroff -Kutf8 -mpdfmark resume.groff >resume.pdf
+ENVS := GROFF_TMAC_PATH=.
+MACROS := -mpdfmark -mresume
+
+resume.pdf: resume.groff resume.tmac
+	$(ENVS) pdfroff -Kutf8 $(MACROS) resume.groff >resume.pdf
 
 .PHONY: clean
 clean:
