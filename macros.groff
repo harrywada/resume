@@ -29,7 +29,7 @@
 .   \" The trailing \h is to account for the space that will be added.
 .   el   .nop \Z'\h'-0.15i'\fB\[bu]\f[]'\h'-\w' 'u'
 ..
-.de section
+.de header
 .   tr \*[_caps]
 .   \" Don't care about conditional kerning; 999 should never trigger.
 .   tkf R 10 0.1666m 999 0
@@ -39,13 +39,16 @@
 .   ie n .sp
 .   el   .sp 0.2i
 ..
-.de info
+.de section
 .   if r _list \{\
 .      in -\n[_list_indent]u
 .      rr _list
 .   \}
-.   ie "\\*[_state]"INFO" \{\
-.      ie n .sp
+.   ie "\\*[_state]"\\$1" \{\
+.      ie n \{\
+.         ie "\\$2"br" .br
+.         el           .sp
+.      \}
 .      el   .sp 0.1i
 .   \}
 .   el \{\
@@ -53,75 +56,30 @@
 .         ie n .sp
 .         el   .sp 0.2i
 .      \}
-.      section info
-.      ds _state INFO
+.      header "\\$1"
+.      ds _state \\$1
 .   \}
+..
+.de info
+.   section "info"
 .   tr \*[_caps]
 .   nop \fB\\$1\f[]
 .   tr \*[_ncaps]
 .   br
 ..
 .de link
-.   ie "\\*[_state]"LINKS" \{\
-.      ie n .br
-.      el   .sp 0.1i
-.   \}
-.   el \{\
-.      if !"\\*[_state]"INIT" \{\
-.         ie n .sp
-.         el   .sp 0.2i
-.      \}
-.      section links
-.      ds _state LINKS
-.   \}
+.   section "links" br
 .   url "\\$1" "\\$2"
 ..
 .de skill
-.   ie "\\*[_state]"SKILLS" \{\
-.      ie n .br
-.      el   .sp 0.1i
-.   \}
-.   el \{\
-.      if !"\\*[_state]"INIT" \{\
-.         ie n .sp
-.         el   .sp 0.2i
-.      \}
-.      section skills
-.      ds _state SKILLS
-.   \}
+.   section "skills" br
 .   nop \\$1
 ..
 .de profile
-.   ie "\\*[_state]"PROFILE" \{\
-.      ie n .sp
-.      el   .sp 0.1i
-.   \}
-.   el \{\
-.      if !"\\*[_state]"INIT" \{\
-.         ie n .sp
-.         el   .sp 0.2i
-.      \}
-.      section profile
-.      ds _state PROFILE
-.   \}
+.   section "profile"
 ..
 .de exp
-.   ie "\\*[_state]"EXPERIENCE" \{\
-.      if r _list \{\
-.          in -\n[_list_indent]u
-.          rr _list
-.      \}
-.      ie n .sp
-.      el   .sp 0.1i
-.   \}
-.   el \{\
-.      if !"\\*[_state]"INIT" \{\
-.         ie n .sp
-.         el   .sp 0.2i
-.      \}
-.      section employment\ history
-.      ds _state EXPERIENCE
-.   \}
+.   section "employment history"
 .   nop \s(10\fB\\$1\f[]\s0
 .   brp
 .   ad r
@@ -135,22 +93,7 @@
 .   el   .sp 0.05i
 ..
 .de edu
-.   ie "\\*[_state]"EDUCATION" \{\
-.      ie n .sp
-.      el   .sp 0.1i
-.      if r _list \{\
-.          in -\n[_list_indent]u
-.          rr _list
-.      \}
-.   \}
-.   el \{\
-.      if !"\\*[_state]"INIT" \{\
-.         ie n .sp
-.         el   .sp 0.2i
-.      \}
-.      section education
-.      ds _state EDUCATION
-.   \}
+.   section "education"
 .   nop \s(10\fB\\$1\f[]\s0
 .   br
 .   nop \\$2
