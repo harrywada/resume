@@ -3,6 +3,9 @@
 .\" Capitalization transformations.
 .ds _caps aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
 .ds _ncaps aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
+.\" Fonts and colors
+.fam Argentum
+.ps 8
 .\" Setting spacing values.
 .ie n \{\
 .   nr _width 100m
@@ -52,9 +55,9 @@
 .de header
 .   tr \*[_caps]
 .   \" Don't care about conditional kerning; 999 should never trigger.
-.   tkf R 10 0.1666m 999 0
+.   tkf ArgentumB 10 0.1666m 999 0
 .   nop \Z'\v' 0.254c'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
-.   tkf R 10 0 999 0
+.   tkf ArgentumB 10 0 999 0
 .   tr \*[_ncaps]
 .   ie n .sp
 .   el   .sp 0.5c
