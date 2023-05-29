@@ -4,10 +4,23 @@
 .ds _caps aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
 .ds _ncaps aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
 .\" Setting spacing values.
-.ie n .nr _list_indent 3m
-.el   .nr _list_indent 0.35i
+.ie n \{\
+.   nr _width 100m
+.   nr _margin 2m
+.   nr _list_indent 3m
+.\}
+.el \{\
+.   nr _width \*[paper-\*[paper-p]-width]
+.   nr _margin 1.27c
+.   nr _list_indent 0.889c
+.\}
+.nr _aside_width ((\n[_width]u / 3) >? 20m)
+.\" This padding is used for both sides of the aside.
+.nr _aside_padding (((9 * \n[_aside_width]u) / 100)u >? 1m)
+.nr _content_width (\n[_width]u - \n[_aside_width]u)
 .ad l
-.if !n .po 0.5i
+.po \n[_margin]u
+.ll (\n[_aside_width]u - \n[_margin]u - \n[_aside_padding]u)u
 .\" Macros.
 .de url
 .   ie n .nop \\$2
@@ -28,6 +41,12 @@
 .   ie n .nop \h'-\w'\[bu] 'u'\[bu]
 .   \" The trailing \h is to account for the space that will be added.
 .   el   .nop \Z'\h'-0.15i'\fB\[bu]\f[]'\h'-\w' 'u'
+.de 2c
+.   nop \p
+.   ds _state INIT
+.   rt 0
+.   po (\n[_aside_width]u + \n[_aside_padding]u)u
+.   ll (\n[_width]u - \n[_margin]u - \n[_aside_width]u - \n[_aside_padding]u)u
 ..
 .de header
 .   tr \*[_caps]

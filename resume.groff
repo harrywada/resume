@@ -34,6 +34,8 @@ American
 .skill "Docker"
 .skill "Git"
 .skill "Jira"
+.\" Begin next column
+.2c
 .\" ===
 .\" Profile
 .\" ===
