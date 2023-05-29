@@ -4,6 +4,8 @@
 .ds _caps aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
 .ds _ncaps aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
 .\" Setting spacing values.
+.ie n .nr _list_indent 3m
+.el   .nr _list_indent 0.35i
 .ad l
 .if !n .po 0.5i
 .\" Macros.
@@ -18,14 +20,9 @@
 .de list
 .   ie r _list .br
 .   el \{\
-.      ie n \{\
-.         br
-.         in +3h
-.      \}
-.      el \{\
-.         sp 0.05i
-.         in +0.35i
-.      \}
+.      ie n .br
+.      el   .sp +0.05i
+.      in +\n[_list_indent]u
 .      nr _list 1
 .   \}
 .   ie n .nop \h'-\w'\[bu] 'u'\[bu]
@@ -44,7 +41,7 @@
 ..
 .de info
 .   if r _list \{\
-.      in -0.35i
+.      in -\n[_list_indent]u
 .      rr _list
 .   \}
 .   ie "\\*[_state]"INFO" \{\
@@ -111,8 +108,7 @@
 .de exp
 .   ie "\\*[_state]"EXPERIENCE" \{\
 .      if r _list \{\
-.          ie n .in -3h
-.          el   .in -0.35i
+.          in -\n[_list_indent]u
 .          rr _list
 .      \}
 .      ie n .sp
@@ -143,7 +139,7 @@
 .      ie n .sp
 .      el   .sp 0.1i
 .      if r _list \{\
-.          in -0.35i
+.          in -\n[_list_indent]u
 .          rr _list
 .      \}
 .   \}
