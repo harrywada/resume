@@ -7,6 +7,8 @@ FONTS_PFA := devps/ArgentumR.pfa devps/ArgentumB.pfa
 
 resume.pdf: resume.groff resume.tmac $(FONTS_DIT) $(FONTS_PFA)
 	$(ENVS) pdfroff -Kutf8 $(MACROS) $(PAPER) resume.groff >resume.pdf
+resume.txt: resume.groff resume.tmac
+	$(ENVS) groff -Tutf8 -Kutf8 $(MACROS) resume.groff >resume.txt
 
 devps/ArgentumR: devps/ArgentumR.afm
 	afmtodit -f ArgentumR devps/ArgentumR.afm textmap devps/ArgentumR
@@ -29,4 +31,4 @@ devps/ArgentumB.pfa devps/ArgentumB.afm: ArgentumNovus-SemiBold.ttf
 
 .PHONY: clean
 clean:
-	rm -rf devps/ resume.pdf
+	rm -rf devps/ resume.pdf resume.txt
