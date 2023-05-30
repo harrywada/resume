@@ -6,6 +6,10 @@
 .\" Fonts and colors
 .fam Argentum
 .ps 8
+.defcolor fg rgb #404040
+.defcolor grey rgb #f4f4f4
+.defcolor white rgb #ffffff
+.gcolor fg
 .\" Setting spacing values.
 .ie n \{\
 .   nr _width 100m
@@ -24,6 +28,8 @@
 .ad l
 .po \n[_margin]u
 .ll (\n[_aside_width]u - \n[_margin]u - \n[_aside_padding]u)u
+.\" Draw the shaded aside box.
+.if !n .nop \Z'\h'|-\n[.o]u'\v'|-1'\M[grey]\D'P \n[_aside_width]u 0 0 \n[.p]u -\n[_aside_width]u 0'\M[]'
 .\" Macros.
 .de url
 .   ie n .nop \\$2
@@ -56,7 +62,7 @@
 .   tr \*[_caps]
 .   \" Don't care about conditional kerning; 999 should never trigger.
 .   tkf ArgentumB 10 0.1666m 999 0
-.   nop \Z'\v' 0.254c'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
+.   nop \D't 1250'\h'-1250u'\Z'\v' 0.254c'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
 .   tkf ArgentumB 10 0 999 0
 .   tr \*[_ncaps]
 .   ie n .sp
