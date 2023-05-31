@@ -24,9 +24,11 @@ American
 .\" ===
 .\" Links
 .\" ===
-.link "Github" "https://github.com/harrywada"
-.link "LinkedIn" "https://linkedin.com/in/harrywada"
-.link "Website" "https://www.harrywada.com"
+.\" Save some space on the terminal by omitting the protocol.
+.if !n .ds proto https://
+.link "Github" "\*[proto]github.com/harrywada"
+.link "LinkedIn" "\*[proto]linkedin.com/in/harrywada"
+.link "Website" "\*[proto]www.harrywada.com"
 .\" ===
 .\" Skills
 .\" ===
