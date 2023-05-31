@@ -1,3 +1,7 @@
+.ds NAME Harry Wada
+.\" In the terminal, "developer" has an extra letter and centers better.
+.ie n .ds TITLE Software Developer
+.el   .ds TITLE Software Engineer
 .\" ===
 .\" Information
 .\" ===

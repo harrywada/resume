@@ -15,11 +15,13 @@
 .   nr _width 100m
 .   nr _margin 2m
 .   nr _list_indent 3m
+.   nr _banner_total_height 10v
 .\}
 .el \{\
 .   nr _width \*[paper-\*[paper-p]-width]
 .   nr _margin 1.27c
 .   nr _list_indent 0.889c
+.   nr _banner_total_height 6.1c
 .\}
 .nr _aside_width ((\n[_width]u / 3) >? 20m)
 .\" This padding is used for both sides of the aside.
@@ -29,7 +31,11 @@
 .po \n[_margin]u
 .ll (\n[_aside_width]u - \n[_margin]u - \n[_aside_padding]u)u
 .\" Draw the shaded aside box.
-.if !n .nop \Z'\h'|-\n[.o]u'\v'|-1'\M[grey]\D'P \n[_aside_width]u 0 0 \n[.p]u -\n[_aside_width]u 0'\M[]'
+.if !n \{\
+.   nop \Z'\h'|-\n[.o]u'\v'|-1'\M[grey]\D'P \n[_aside_width]u 0 0 \n[.p]u -\n[_aside_width]u 0'\M[]'
+.   sp -1 \" Reverse vertical space introduced by above requests.
+.\}
+.sp \n[_banner_total_height]u
 .\" Macros.
 .de url
 .   ie n .nop \\$2
@@ -51,10 +57,79 @@
 .   \" The trailing \h is to account for the space that will be added.
 .   el   .nop \Z'\h'-0.381c'\fB\[bu]\f[]'\h'-\w' 'u'
 ..
+.\" XXX This gets pretty messy. Maybe try to clean up if possible.
+.de _banner
+.   po 0
+.   ll \\n[_width]u
+.   tkf ArgentumB 20 0.2m 999 0
+.   tr \\*[_caps]
+.   nr _ad \\n[.j]
+.   ad c
+.   ie n \{\
+.      ds _l1 \fB\s(20\\*[NAME]\s0\f[]
+.      nr _l1h 1v
+.      nr _l1w \w'\\*[_l1]'
+.      ds _l2 \s(11\\*[TITLE]\s0
+.      nr _l2h 1v
+.      nr _l2w \w'\\*[_l2]'
+.      nr _banph 3v \" Banner padding height.
+.      nr _banpw 10m
+.   \}
+.   el \{\
+.      nr _sep 0.381c \" Extra space between lines for non-terminal devices.
+.      ds _l1 \fB\s(20\x'\\n[_sep]u'\\*[NAME]\s0\f[]
+.      nr _l1h 20p
+.      nr _l1w \w'\\*[_l1]'
+.      ds _l2 \s(11\\*[TITLE]\s0
+.      nr _l2h 11p
+.      nr _l2w \w'\\*[_l2]'
+.      nr _banph 1.143c \" Banner padding height.
+.      nr _banpw 2.032c
+.   \}
+.   nr _banw ((\\n[_l1w]u >? \\n[_l2w]u) + (2u * \\n[_banpw]u))u
+.   nr _banh (\\n[_l1h]u + \\n[_l2h]u + \\n[_sep]u + (2u * \\n[_banph]u))u
+.   \" Margin between the banner and the top of the page.
+.   nr _banm ((\\n[_banner_total_height]u - \\n[_banh]u - \\n[.v]u) / 2u)u
+.   \" This represents the natural space between lines (both top and bottom).
+.   \" When added to _sep, it represents the total distance between the first
+.   \" and second lines. On terminals, don't use it.
+.   if !n .nr _lsep (\\n[.v]u - \\n[.ps]u)
+.   \" If the second line is longer than the first, we'll need to account for
+.   \" that since the box-drawing assumes that it is starting from the
+.   \" left-most text.
+.   if (\\n[_l2w]>\\n[_l1w]) \{\
+.      ie !n .nr _off ((\\n[_l2w]u - \\n[_l1w]u) / 2u)u
+.      el    .nr _off (((\\n[_l2w]u - \\n[_l1w]u) + 1m) / 2u)u
+.   \}
+.   \" Because of the way lines are drawn on the terminal, we need to subtract
+.   \" a line from the height as well as a space from the width of the banner.
+.   if n \{\
+.      nr _banh -1v
+.      nr _banw -1m
+.   \}
+.   sp |\\n[_banm]u+\\n[_banph]u+\\n[.v]u
+.   nop \Z'\h'-\\n[_off]u-\\n[_banpw]u'\v'\\n[_lsep]u+\\n[_sep]u+\\n[_l2h]u+\\n[_banph]u'\D'p \\n[_banw]u 0 0 -\\n[_banh]u -\\n[_banw]u 0''\h'-\w' 'u'
+.   nop \Z'\M[white]\h'-\\n[_off]u-\\n[_banpw]u'\v'\\n[_lsep]u+\\n[_sep]u+\\n[_l2h]u+\\n[_banph]u'\D'P \\n[_banw]u 0 0 -\\n[_banh]u -\\n[_banw]u 0'\M[]'\h'-\w' 'u'
+.   nop \\*[_l1]
+.   br
+.   nop \\*[_l2]\p
+.   ad \\n[_ad]
+.   tr \\*[_ncaps]
+.   tkf ArgentumB 20 0 999 0
+.   ll
+.   po
+..
 .de 2c
 .   nop \p
 .   ds _state INIT
 .   rt 0
+.   _banner
+.   \" Move to the main content area.
+.   rt 0
+.   sp \n[_banner_total_height]u
+.   ad \\n[_ad]
+.   tr \\*[_ncaps]
+.   tkf ArgentumB 20 0 999 0
 .   po (\n[_aside_width]u + \n[_aside_padding]u)u
 .   ll (\n[_width]u - \n[_margin]u - \n[_aside_width]u - \n[_aside_padding]u)u
 ..
