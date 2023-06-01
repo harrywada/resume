@@ -99,3 +99,6 @@ to prototype and develop a range of web apps and static websites.
 .\" ===
 .edu "University of Texas at Dallas, B.S. in Computer Science" "May 2023"
 .edu "Austin Coding Academy, Graduation from Advanced Class" "September 2016"
+.\" Don't really care about page length on terminal devices; just truncate it
+.\" wherever it ends (with an extra space for padding).
+.if n .pl (\n[.nl]u + 2v)
