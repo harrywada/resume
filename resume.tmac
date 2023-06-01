@@ -25,7 +25,7 @@
 .\}
 .nr _aside_width ((647 * \n[_width]u / 2000) >? 20m)
 .\" This padding is used for both sides of the aside.
-.nr _aside_padding (((9 * \n[_aside_width]u) / 100)u >? 1m)
+.nr _aside_padding (((9 * \n[_aside_width]u) / 100) >? 1m)
 .nr _content_width (\n[_width]u - \n[_aside_width]u)
 .ad l
 .po \n[_margin]u
@@ -102,10 +102,10 @@
 .      nr _banpw 2.032c
 .      nr _banpw 2.0551c
 .   \}
-.   nr _banw ((\\n[_l1w]u >? \\n[_l2w]u) + (2u * \\n[_banpw]u))u
-.   nr _banh (\\n[_l1h]u + \\n[_l2h]u + \\n[_sep]u + (2u * \\n[_banph]u))u
+.   nr _banw ((\\n[_l1w]u >? \\n[_l2w]u) + (2 * \\n[_banpw]u))
+.   nr _banh (\\n[_l1h]u + \\n[_l2h]u + \\n[_sep]u + (2 * \\n[_banph]u))
 .   \" Margin between the banner and the top of the page.
-.   nr _banm ((\\n[_banner_total_height]u - \\n[_banh]u - \\n[.v]u) / 2u)u
+.   nr _banm ((\\n[_banner_total_height]u - \\n[_banh]u - \\n[.v]u) / 2)
 .   \" This represents the natural space between lines (both top and bottom).
 .   \" When added to _sep, it represents the total distance between the first
 .   \" and second lines. On terminals, don't use it.
@@ -114,8 +114,8 @@
 .   \" that since the box-drawing assumes that it is starting from the
 .   \" left-most text.
 .   if (\\n[_l2w]>\\n[_l1w]) \{\
-.      ie !n .nr _off ((\\n[_l2w]u - \\n[_l1w]u) / 2u)u
-.      el    .nr _off (((\\n[_l2w]u - \\n[_l1w]u) + 1m) / 2u)u
+.      ie !n .nr _off ((\\n[_l2w]u - \\n[_l1w]u) / 2)
+.      el    .nr _off (((\\n[_l2w]u - \\n[_l1w]u) + 1m) / 2)
 .   \}
 .   \" Because of the way lines are drawn on the terminal, we need to subtract
 .   \" a line from the height as well as a space from the width of the banner.
