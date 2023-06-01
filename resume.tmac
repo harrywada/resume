@@ -23,7 +23,7 @@
 .   nr _list_indent 0.889c
 .   nr _banner_total_height 6.1c
 .\}
-.nr _aside_width ((\n[_width]u / 3) >? 20m)
+.nr _aside_width ((647 * \n[_width]u / 2000) >? 20m)
 .\" This padding is used for both sides of the aside.
 .nr _aside_padding (((9 * \n[_aside_width]u) / 100)u >? 1m)
 .nr _content_width (\n[_width]u - \n[_aside_width]u)
@@ -57,6 +57,20 @@
 .   \" The trailing \h is to account for the space that will be added.
 .   el   .nop \Z'\h'-0.381c'\fB\[bu]\f[]'\h'-\w' 'u'
 ..
+.\" Sometimes we need a little extra space between words, and neither .tkf nor
+.\" .tr works for this purpose.
+.de _inc_space
+.   rm _out
+.   length _n "\\$1"
+.   nr _i 0
+.   while (\\n[_i] < \\n[_n]) \{\
+.      ds _tmp \\$1
+.      substring _tmp \\n[_i] \\n[_i]
+.      as _out \\*[_tmp]
+.      if "\\*[_tmp]" " .as _out \~\h'\\$2'
+.      nr _i +1
+.   \}
+..
 .\" XXX This gets pretty messy. Maybe try to clean up if possible.
 .de _banner
 .   po 0
@@ -77,7 +91,8 @@
 .   \}
 .   el \{\
 .      nr _sep 0.381c \" Extra space between lines for non-terminal devices.
-.      ds _l1 \fB\s(20\x'\\n[_sep]u'\\*[NAME]\s0\f[]
+.      _inc_space "\\*[NAME]" 0.15m
+.      ds _l1 \fB\s(20\x'\\n[_sep]u'\\*[_out]\s0\f[]
 .      nr _l1h 20p
 .      nr _l1w \w'\\*[_l1]'
 .      ds _l2 \s(11\\*[TITLE]\s0
@@ -85,6 +100,7 @@
 .      nr _l2w \w'\\*[_l2]'
 .      nr _banph 1.143c \" Banner padding height.
 .      nr _banpw 2.032c
+.      nr _banpw 2.0551c
 .   \}
 .   nr _banw ((\\n[_l1w]u >? \\n[_l2w]u) + (2u * \\n[_banpw]u))u
 .   nr _banh (\\n[_l1h]u + \\n[_l2h]u + \\n[_sep]u + (2u * \\n[_banph]u))u
@@ -136,8 +152,9 @@
 .de header
 .   tr \*[_caps]
 .   \" Don't care about conditional kerning; 999 should never trigger.
-.   tkf ArgentumB 10 0.1666m 999 0
-.   nop \D't 1250'\h'-1250u'\Z'\v' 0.254c'\D'l \\n[.l]u 0''\s(10\fB\\$1\f[]\s0
+.   tkf ArgentumB 10 0.2m 999 0
+.   _inc_space "\\$1" 0.2m
+.   nop \D't 1250'\h'-1250u'\Z'\v' 0.254c'\D'l \\n[.l]u 0''\s(10\fB\\*[_out]\f[]\s0
 .   tkf ArgentumB 10 0 999 0
 .   tr \*[_ncaps]
 .   ie n .sp
