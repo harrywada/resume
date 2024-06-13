@@ -15,8 +15,11 @@ Cozy share Ikebukuro-nishi 101
 .email career@harrywada.com
 .info "Place of birth"
 Carrollton, TX
-.info "Drivers license"
-None
+.info "Visa"
+Resident
+.if !n .nop (engineering, specialist...)
+.br
+expires 2027/04/25
 .info "Nationality"
 American
 .\" ===
