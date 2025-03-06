@@ -6,9 +6,22 @@
 .\" Information
 .\" ===
 .info "Address"
-Cozy share Ikebukuro-nishi 101
-.br
-4-20-10 Nagasaki Toshima-ku Tokyo
+.sp -1
+.\" Can't figure out how to get Japanese fonts to work on PDF
+.ie n \{
+.   nop ハーモニーテラス105
+.   br
+.   nop 2-12-15南長崎豊島区
+.   br
+.   nop 〒171-0052
+.\}
+.el \{
+.   nop Harmony Terrace 105
+.   br
+.   nop 2-12-15 Minaminagasaki Toshima
+.   br
+.   nop 171-0052
+.\}
 .info "Phone"
 +81 070-407-87343
 .info "Email"
