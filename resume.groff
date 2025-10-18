@@ -7,20 +7,18 @@
 .\" ===
 .info "Address"
 .sp -1
-.\" Can't figure out how to get Japanese fonts to work on PDF
 .ie n \{
-.   nop ハーモニーテラス105
+.   \" Shorter address for monospaced terminal
+.   nop Harmony Terrace南長崎II 105
 .   br
 .   nop 2-12-15南長崎豊島区
 .   br
 .   nop 〒171-0052
 .\}
 .el \{
-.   nop Harmony Terrace 105
+.   nop ハーモニーテラス南長崎Ⅱ105号室
 .   br
-.   nop 2-12-15 Minaminagasaki Toshima
-.   br
-.   nop 171-0052
+.   nop 2-12-15南長崎豊島区〒171-0052
 .\}
 .info "Phone"
 +81 070-407-87343
