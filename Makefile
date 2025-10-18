@@ -2,33 +2,36 @@ ENVS := GROFF_TMAC_PATH=. GROFF_FONT_PATH=.
 MACROS := -mpdfmark -mresume
 PAPER := -dpaper=letter -P-pletter
 
-FONTS_DIT := devps/ArgentumR devps/ArgentumB
-FONTS_PFA := devps/ArgentumR.pfa devps/ArgentumB.pfa
+DIT_FONTS := ArgentumR ArgentumB
+T42_FONTS := ArgentumSans-Light.t42 ArgentumNovus-SemiBold.t42
+FONTS := $(addprefix devps/,$(DIT_FONTS) $(T42_FONTS))
 
-resume.pdf: resume.groff resume.tmac $(FONTS_DIT) $(FONTS_PFA)
+resume.pdf: resume.groff resume.tmac devps/download $(FONTS)
 	$(ENVS) pdfroff -Kutf8 $(MACROS) $(PAPER) resume.groff >resume.pdf
 resume.txt: resume.groff resume.tmac
 	$(ENVS) groff -Tutf8 -Kutf8 $(MACROS) resume.groff >resume.txt
 
-devps/ArgentumR: devps/ArgentumR.afm
-	afmtodit -f ArgentumR devps/ArgentumR.afm textmap devps/ArgentumR
-devps/ArgentumR.pfa devps/ArgentumR.afm: ArgentumSans-Light.ttf
+devps/ArgentumR: ArgentumSans-Light.afm textmap
 	@mkdir -p devps/
-	ttf2pt1 -W 0 -ae ArgentumSans-Light.ttf devps/ArgentumR
-	@# For portability; POSIX sed doesn't have -i flag.
-	mv devps/ArgentumR.pfa devps/ArgentumR.pfa.orig
-	sed "/^\/FontName/s/ArgentumSans-Light/ArgentumR/" devps/ArgentumR.pfa.orig >devps/ArgentumR.pfa
-	printf "%s\n" "ArgentumR ArgentumR.pfa" >>devps/download
-devps/ArgentumB: devps/ArgentumB.afm
-	afmtodit -f ArgentumB devps/ArgentumB.afm textmap devps/ArgentumB
-devps/ArgentumB.pfa devps/ArgentumB.afm: ArgentumNovus-SemiBold.ttf
+	afmtodit ArgentumSans-Light.afm textmap devps/ArgentumR
+devps/ArgentumB: ArgentumNovus-SemiBold.afm textmap
 	@mkdir -p devps/
-	ttf2pt1 -W 0 -ae ArgentumNovus-SemiBold.ttf devps/ArgentumB
-	@# For portability; POSIX sed doesn't have -i flag.
-	mv devps/ArgentumB.pfa devps/ArgentumB.pfa.orig
-	sed "/^\/FontName/s/ArgentumNovus-SemiBold/ArgentumB/" devps/ArgentumB.pfa.orig >devps/ArgentumB.pfa
-	printf "%s\n" "ArgentumB ArgentumB.pfa" >>devps/download
+	afmtodit ArgentumNovus-SemiBold.afm textmap devps/ArgentumB
+
+devps/download:
+	@mkdir -p devps/
+	printf %s\\t%s.t42\\n $(foreach f,$(basename $(T42_FONTS)),$(f) $(f)) >devps/download
+textmap: /usr/share/groff/current/font/devps/generate/textmap
+	cp /usr/share/groff/current/font/devps/generate/textmap textmap
+
+devps/%.t42: %.ttf
+	@mkdir -p devps/
+	fontforge -lang=ff -c 'Open("$<"); Generate($$fontname + ".t42");'
+	mv $(patsubst %.ttf,%.t42,$<) $@
+%.afm %.pfa: %.ttf
+	@mkdir -p devps/
+	fontforge -lang=ff -c 'Open("$<"); Generate($$fontname + ".pfa");'
 
 .PHONY: clean
 clean:
-	rm -rf devps/ resume.pdf resume.txt
+	rm -rf devps/ resume.pdf resume.txt textmap *.afm *.pfa

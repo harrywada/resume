@@ -15,8 +15,8 @@ Dependencies
 
 Besides groff itself, the only dependencies are those necessary to convert the
 TTF files into ones usable by groff. Beyond standard POSIX utilities, these
-consist of `ttf2pt1` and `afmtodit`, which should be available in most package
-managers.
+consist of `fontforge` and `afmtodit`, which should be available in most
+package managers.
 
 It should be noted that, since it doesn't require fonts, the plaintext résumé
 can still be generated without any of these additional programs.

@@ -1,3 +1,6 @@
+*.pfa
+*.afm
 devps/
 resume.pdf
 resume.txt
+textmap
