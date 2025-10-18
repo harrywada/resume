@@ -28,7 +28,7 @@
 Carrollton, TX
 .info "Visa"
 Resident
-.if !n .nop (engineering, specialist...)
+.if !n .nop (engineering, specialist…)
 .br
 expires 2027/04/25
 .info "Nationality"
