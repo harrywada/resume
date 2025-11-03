@@ -2,8 +2,8 @@ ENVS := GROFF_TMAC_PATH=. GROFF_FONT_PATH=.
 MACROS := -mpdfmark -mresume
 PAPER := -dpaper=letter -P-pletter
 
-DIT_FONTS := ArgentumR ArgentumB NotoSansJP
-T42_FONTS := ArgentumSans-Light.t42 ArgentumNovus-SemiBold.t42 NotoSansJP-Light.t42
+DIT_FONTS := ArgentumR ArgentumB MPLUS1p
+T42_FONTS := ArgentumSans-Light.t42 ArgentumNovus-SemiBold.t42 MPLUS1p-Regular.t42
 FONTS := $(addprefix devps/,$(DIT_FONTS) $(T42_FONTS))
 
 resume.pdf: resume.groff resume.tmac devps/download $(FONTS)
@@ -17,9 +17,9 @@ devps/ArgentumR: ArgentumSans-Light.afm textmap
 devps/ArgentumB: ArgentumNovus-SemiBold.afm textmap
 	@mkdir -p devps/
 	afmtodit ArgentumNovus-SemiBold.afm textmap devps/ArgentumB
-devps/NotoSansJP: NotoSansJP-Light.afm textmap
+devps/MPLUS1p: MPLUS1p-Regular.afm textmap
 	@mkdir -p devps/
-	afmtodit NotoSansJP-Light.afm textmap devps/NotoSansJP
+	afmtodit -s MPLUS1p-Regular.afm textmap devps/MPLUS1p
 
 devps/download:
 	@mkdir -p devps/
