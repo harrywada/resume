@@ -3,7 +3,7 @@ MACROS := -mpdfmark -mresume
 PAPER := -dpaper=letter -P-pletter
 
 DIT_FONTS := ArgentumR ArgentumB MPLUS1p
-T42_FONTS := ArgentumSans-Light.t42 ArgentumNovus-SemiBold.t42 MPLUS1p-Regular.t42
+T42_FONTS := $(addsuffix .t42,ArgentumSans-Light ArgentumNovus-SemiBold MPLUS1p-Regular)
 FONTS := $(addprefix devps/,$(DIT_FONTS) $(T42_FONTS))
 
 resume.pdf: resume.groff resume.tmac devps/download $(FONTS)
