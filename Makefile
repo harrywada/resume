@@ -29,11 +29,10 @@ textmap: /usr/share/groff/current/font/devps/generate/textmap
 
 devps/%.t42: %.ttf
 	@mkdir -p devps/
-	fontforge -lang=ff -c 'Open("$<"); Generate($$fontname + ".t42");'
+	fontforge -c 'open(argv[1]).generate(argv[1][:-3] + "t42")' $<
 	mv $(patsubst %.ttf,%.t42,$<) $@
 %.afm %.pfa: %.ttf
-	@mkdir -p devps/
-	fontforge -lang=ff -c 'Open("$<"); Generate($$fontname + ".pfa");'
+	fontforge -c 'open(argv[1]).generate(argv[1][:-3] + "pfa")' $<
 
 .PHONY: clean
 clean:
