@@ -71,9 +71,20 @@ and lends itself to team collaboration and iteration.
 .\" ===
 .\" Experience
 .\" ===
+.exp "Software Engineer, Hyperbond Studio" "Tokyo" \
+     "February 2026" "present"
+Developing
+.pdfhref W -D https://callmesensei.app -- Call Me Sensei
+to provide language learners with a fun, engaging way to study and practice.
+.list
+Leveraging generative AI technologies for fast prototyping and iteration
+.list
+Gaining experience in developing software from the ground up and building a brand
+.list
+Working to meet investor expectations and deadlines
 .exp "English Teacher, ECC Foreign Language Institute" "Tokyo" \
-     "May 2024" "present"
-Offer native English instruction to students of all ages across the Tokyo prefecture,
+     "May 2024" "March 2026"
+Offered native English instruction to students of all ages across the Tokyo prefecture,
 while cultivating a fun, engaging classroom environment.
 .exp "Software Engineer Intern, Bazaarvoice" "Remote" \
      "May 2021" "August 2021"
@@ -92,25 +103,8 @@ Engaged in daily standup meetings
 and worked closely with other engineers
 .exp "Software Engineer Intern, Bazaarvoice" "Remote" \
      "May 2020" "August 2020"
-Engineered a solution to migrate data
-from production DynamoDB tables
-to newly managed PostgreSQL instances.
-.list
-Migrated existing NoSQL data into a relational format
-using a custom Python script
-.list
-Developed and deployed infrastructure using Cloudformation templates
 .exp "Software Engineer Intern, Bazaarvoice" "Austin, TX" \
      "May 2019" "November 2019"
-Developed a full-featured internal tool using React and Redux,
-easing the amount of effort required to accomplish the everyday processes of many teams.
-.list
-Worked with authenticated APIs
-to retrieve, create, and update data.
-.list
-Adopted an agile workflow
-in which constraints and requirements could change often
-and needed to be responded to in a timely manner
 .\" ===
 .\" Education
 .\" ===
